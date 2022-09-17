@@ -96,6 +96,8 @@ function App() {
     localStorage.setItem("suspend", JSON.stringify(suspend))
     setStart([...start])
     localStorage.setItem("todo", JSON.stringify(start))
+    window.location.reload()
+
   }
 
   function started() {
@@ -106,6 +108,8 @@ function App() {
     localStorage.setItem("progress", JSON.stringify(starting))
     setStart([...start])
     localStorage.setItem("todo", JSON.stringify(start))
+    window.location.reload()
+
   }
 
   function completed() {
@@ -116,6 +120,7 @@ function App() {
     localStorage.setItem("done", JSON.stringify(done))
     setStart([...start])
     localStorage.setItem("todo", JSON.stringify(start))
+    window.location.reload()
   }
 
 
