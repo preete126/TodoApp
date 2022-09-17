@@ -64,21 +64,20 @@ body{
   color: white;
 }
 .modal-content{
-  border: none !important;
+ 
 }
-.profilemodal{
- height: 400px;
- width: 670px;
- background-color: rgb(179,95,159);
- color: white;
-  margin-left: -85px;
-  padding: auto;
-}
-.modal-header{
-  width: 670px;
+
+.modal-content{
   background-color: rgb(179,95,159);
   color: white;
-  margin-left: -85px;
+  border: none !important;
+}
+
+.modal-dialog{
+  min-width: 670px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .account{
   width: 100%;
@@ -253,28 +252,37 @@ header > button{
   outline: 1px solid rgba(0,0,0,0.3);
   border-radius: 10px
 }
-a{
-  /* font-size: 20px; */
-  font-family: monospace;
-  font-weight: 600;
-  color: white;
-  text-decoration: none;
+
+@media (max-width:690px){
+  .modal-dialog{
+    min-width: 500px ;
+   }
+   .btn{
+     width: 250px !important;
+     margin: auto !important;
+   }
+}
+@media (max-width:515px){
+  .modal-dialog{
+    min-width: 400px ;
+   }
 }
 @media (max-width:640px){
-  nav  button{
-    display: none !important;
-  }
   #time {
     display: none ;
   }
+  
+   .modal-dialog{
+    width: 300px;
+   }
+   .side1{
+     display: none !important;
+   }
 }
-@media(max-width:420px){
+  @media(max-width:420px){
   
   #search{
     display: none;
-  }
-  .side1{
-    display: none !important;
   }
   .flow{
     overflow-x: hidden !important;
@@ -284,7 +292,6 @@ a{
   }
   .menu{
     min-width: 10%;
-    /* padding: 15px; */
     height: 100vh;
   }
   strong{
@@ -305,10 +312,7 @@ a{
     background-color: whitesmoke;
     z-index: 1;
   }
-  .modal{
-    width: 250px !important;
-  }
+  .modal-dialog{
+    min-width: 350px ;
+   }
 }
-/* *{
-  border: 1px solid red;
-} */
