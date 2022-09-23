@@ -10,12 +10,17 @@ import Complete from './completed';
 function App() {
   let [profile, setProfile] = useState([User])
   let [newtime, setNewtime] = useState();
+  let [indices, setIndices] = useState([]) 
+  let [determ, setDeterm] = useState("")
 
+  
   let [start, setStart] = useState([])
   let [array, setArray] = useState([])
   let [starting, setStarting] = useState([])
   let [suspend, setSuspend] = useState([])
   let [done, setDone] = useState([])
+
+ 
 
 
   let getprofile = JSON.parse(localStorage.getItem("profilephoto"))
@@ -44,7 +49,7 @@ function App() {
     profile = getprofile
   }
  
-
+  
   useEffect(() => {
     time = setInterval(() => {
       let act = new Date
@@ -54,14 +59,22 @@ function App() {
       setNewtime(newtime)
     }, 1000)
 
-    setStart([...start])
-    localStorage.setItem("todo", JSON.stringify(start))
+    setIndices(indices)
 
     return () => {
       clearInterval(time)
     };
 
   }, [])
+ 
+
+  function settask(v) {
+    setStart(v)
+    localStorage.setItem("todo", JSON.stringify(start))
+  }
+  function setdeterminer(ev) {
+    setDeterm(ev)
+  }
 
   const upload = ()=>{
     document.getElementById("file").click()
@@ -84,9 +97,11 @@ function App() {
 
   function Spreadarr(ev) {
     setArray(ev)
-    localStorage.setItem("todo", JSON.stringify(start))
+    // localStorage.setItem("todo", JSON.stringify(start))
+    // console.log(start)
   }
 
+  
   
   function suspended() {
     suspend.push(...array)
@@ -94,21 +109,50 @@ function App() {
     console.log(array)
     console.log(suspend);
     localStorage.setItem("suspend", JSON.stringify(suspend))
-    setStart([...start])
-    localStorage.setItem("todo", JSON.stringify(start))
+    if (determ == "false") {
+      start.splice(indices, 1)
+      setStart([...start])
+      localStorage.setItem("todo", JSON.stringify(start))
+   }
+   else if (determ == "proceed") {
+    starting.splice(indices, 1)
+    setStarting([...starting])
+    localStorage.setItem("progress", JSON.stringify(starting))
+   }
+   else if (determ == "onhold") {
+    suspend.splice(indices, 1)
+    setSuspend([...suspend])
+    localStorage.setItem("suspend", JSON.stringify(suspend))
+   }
     window.location.reload()
 
   }
 
   function started() {
-    starting.push(...array)
-    setStarting([...starting])
-    console.log(array)
-    console.log(starting);
-    localStorage.setItem("progress", JSON.stringify(starting))
-    setStart([...start])
-    localStorage.setItem("todo", JSON.stringify(start))
-    window.location.reload()
+    
+    
+      starting.push(...array)
+      setStarting([...starting])
+      console.log(array)
+      console.log(starting);
+      localStorage.setItem("progress", JSON.stringify(starting))
+      if (determ == "false") {
+        start.splice(indices, 1)
+        setStart([...start])
+        localStorage.setItem("todo", JSON.stringify(start))
+     }
+     else if (determ == "proceed") {
+      starting.splice(indices, 1)
+      setStarting([...starting])
+      localStorage.setItem("progress", JSON.stringify(starting))
+     }
+     else if (determ == "onhold") {
+      suspend.splice(indices, 1)
+      setSuspend([...suspend])
+      localStorage.setItem("suspend", JSON.stringify(suspend))
+     }
+      window.location.reload()
+   
 
   }
 
@@ -118,8 +162,21 @@ function App() {
     console.log(array)
     console.log(done);
     localStorage.setItem("done", JSON.stringify(done))
-    setStart([...start])
-    localStorage.setItem("todo", JSON.stringify(start))
+    if (determ == "false") {
+      start.splice(indices, 1)
+      setStart([...start])
+      localStorage.setItem("todo", JSON.stringify(start))
+   }
+   else if (determ == "proceed") {
+    starting.splice(indices, 1)
+    setStarting([...starting])
+    localStorage.setItem("progress", JSON.stringify(starting))
+   }
+   else if (determ == "onhold") {
+    suspend.splice(indices, 1)
+    setSuspend([...suspend])
+    localStorage.setItem("suspend", JSON.stringify(suspend))
+   }
     window.location.reload()
   }
 
@@ -187,9 +244,9 @@ function App() {
             </div>
             <div className='flow' style={{overflowX:"scroll", padding:"10px"}}>
               <article className="d-flex gap-3" >
-                <Task setarr = {start} func = {Spreadarr}/>
-                <Proceed Addarr = {starting} func = {Spreadarr} />
-                <Suspend Addarr = {suspend} func = {Spreadarr} />
+                <Task setarr = {start} func = {Spreadarr}  setfunc = {settask} indexs={indices} determiner={setdeterminer}/>
+                <Proceed Addarr = {starting} func = {Spreadarr} indexs={indices} determiner={setdeterminer} />
+                <Suspend Addarr = {suspend} func = {Spreadarr} indexs={indices} determiner={setdeterminer} />
                 <Complete Addarr = {done}/>
               </article>
             </div>

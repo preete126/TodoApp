@@ -11,7 +11,7 @@ const Task = (props) => {
     const Add = ()=>{
         if (name != "") {
             props.setarr.push({todo: name})
-            
+            props.setfunc([...props.setarr])
             // localStorage.setItem("todo", JSON.stringify(start))
             name = ""
             setName(name)
@@ -27,8 +27,9 @@ const Task = (props) => {
             okay.push(props.setarr[index])
             console.log(okay)
             props.func([...okay])
-            // console.log(event)
-            // props.setarr.splice(index, 1)
+            props.indexs.push(index)
+            props.determiner("false")
+            // console.log(props.determiner)
         }
         else if(event == false){
             okay.splice(index, 1)

@@ -2,26 +2,7 @@
 import review from './assets/show.png'
 
 const Complete = (props) => {
-    // let [Done, setDone] = useState([])
-    // let [name, setName] = useState("")
-    // let getDone = JSON.parse(localStorage.getItem("Done"))
-    // let toggler = true
-    // if (getDone != null) {
-    //     Done = getDone
-    // }
-
-
-    // const toast = (ev)=>{
-    //     if (toggler == true) {
-    //         ev.target.closest("main").nextElementSibling.hidden = false
-    //         toggler = false
-    //     }
-    //     else if (toggler == false) {
-    //         ev.target.closest("main").nextElementSibling.hidden = true
-    //         toggler = true
-    //     }
-
-    // }
+    
 
     return (
         <section>

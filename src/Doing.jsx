@@ -12,6 +12,8 @@ const Proceed = (Props) => {
             okay.push(Props.Addarr[index])
             console.log(okay)
             Props.func([...okay])
+            Props.indexs.push(index)
+            Props.determiner("proceed")
             // console.log(event)
             // props.setarr.splice(index, 1)
         }

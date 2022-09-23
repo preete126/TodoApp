@@ -11,6 +11,8 @@ const Suspend = (props) => {
             okay.push(props.Addarr[index])
             console.log(okay)
             props.func([...okay])
+            props.indexs.push(index)
+            props.determiner("onhold")
             // console.log(event)
             // props.setarr.splice(index, 1)
         }
