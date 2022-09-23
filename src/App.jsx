@@ -151,7 +151,7 @@ function App() {
       setSuspend([...suspend])
       localStorage.setItem("suspend", JSON.stringify(suspend))
      }
-      window.location.reload()
+      window.location.reload() 
    
 
   }
